@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNR — Desarrollador Web & Software</title>
+<link rel="icon" type="image/png" href="icono.png">
+<link rel="apple-touch-icon" href="icono.png">
+<meta name="theme-color" content="#ff9e00">
+<meta name="description" content="Desarrollador web y de software en Caracas, Venezuela. HTML, CSS, JavaScript, Python, Git, Marketing y Diseño Gráfico.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#000;
+    --fg:#fff;
+    --amber:#ff9e00;
+    --muted:#9a9a9a;
+    --border:#1f1f1f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-weight:400;
+    line-height:1.7;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--amber);color:#000}
+
+  /* Scrollbar */
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#0a0a0a}
+  ::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:0}
+  ::-webkit-scrollbar-thumb:hover{background:var(--amber)}
+
+  a{color:var(--amber);text-decoration:none;transition:opacity .2s}
+  a:hover{opacity:.75}
+
+  h1,h2,h3{font-weight:700;line-height:1.2}
+  h1{font-size:clamp(1.6rem,4.5vw,3rem)}
+  h2{font-size:clamp(1.3rem,3vw,2rem);margin-bottom:1.5rem}
+  h3{font-size:1.05rem;margin-bottom:.5rem}
+  p{color:#d6d6d6}
+
+  .container{max-width:900px;margin:0 auto;padding:0 24px}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(0,0,0,.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  nav .container{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-top:14px;padding-bottom:14px;
+  }
+  .brand{font-weight:700;color:var(--fg);font-size:.95rem}
+  .brand .prompt{color:var(--amber)}
+  .nav-links{display:flex;gap:22px;list-style:none}
+  .nav-links a{color:var(--muted);font-size:.85rem}
+  .nav-links a:hover{color:var(--amber)}
+  .menu-btn{display:none;background:none;border:none;color:var(--fg);font-family:inherit;font-size:1.4rem;cursor:pointer}
+
+  /* HERO */
+  header.hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding-top:80px;
+    border-bottom:1px solid var(--border);
+  }
+  .terminal{
+    background:#050505;
+    border:1px solid var(--border);
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 0 60px rgba(255,158,0,.05);
+  }
+  .terminal-bar{
+    display:flex;gap:8px;padding:12px 16px;
+    background:#0a0a0a;border-bottom:1px solid var(--border);
+  }
+  .dot{width:12px;height:12px;border-radius:50%;background:#2a2a2a}
+  .dot.r{background:#ff5f56}.dot.y{background:#ffbd2e}.dot.g{background:#27c93f}
+  .terminal-body{padding:28px 24px;font-size:clamp(.8rem,2.2vw,1rem)}
+  .terminal-body .line{margin-bottom:.6rem;display:block}
+  .prompt{color:var(--amber);font-weight:700}
+  .typed{color:var(--fg)}
+  .caret{
+    display:inline-block;width:.6ch;height:1em;
+    background:var(--amber);vertical-align:text-bottom;
+    animation:blink 1s step-end infinite;
+  }
+  @keyframes blink{50%{opacity:0}}
+
+  .hero-actions{margin-top:28px;display:flex;flex-wrap:wrap;gap:14px}
+  .btn{
+    display:inline-block;
+    border:1px solid var(--amber);
+    color:var(--amber);
+    padding:12px 22px;
+    font-size:.85rem;
+    font-weight:700;
+    font-family:inherit;
+    background:transparent;
+    cursor:pointer;
+    transition:background .2s,color .2s,transform .15s;
+    letter-spacing:.5px;
+  }
+  .btn:hover{background:var(--amber);color:#000;transform:translateY(-2px);opacity:1}
+  .btn.ghost{border-color:#333;color:var(--muted)}
+  .btn.ghost:hover{border-color:var(--amber);background:transparent;color:var(--amber)}
+
+  .hero-meta{margin-top:24px;font-size:.8rem;color:var(--muted)}
+  .hero-meta span{color:var(--amber)}
+
+  /* SECTIONS */
+  section{padding:90px 0;border-bottom:1px solid var(--border)}
+  section:last-of-type{border-bottom:none}
+  .section-label{
+    color:var(--amber);font-size:.75rem;font-weight:700;
+    letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;
+    display:block;
+  }
+
+  /* SKILLS */
+  .skills-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:14px;margin-top:28px;
+  }
+  .skill{
+    border:1px solid var(--border);
+    padding:18px 16px;
+    background:#050505;
+    transition:border-color .2s,transform .2s,background .2s;
+    position:relative;
+  }
+  .skill:hover{border-color:var(--amber);transform:translateY(-3px);background:#0a0a0a}
+  .skill .name{font-weight:700;font-size:.95rem;display:block}
+  .skill .tag{color:var(--muted);font-size:.72rem;margin-top:4px;display:block}
+  .skill .tag.progress{color:var(--amber)}
+  .skill .tag.progress::before{content:"▸ ";}
+  
+    /* QUIÉN SOY — foto */
+  .about{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:28px;
+    align-items:start;
+    margin-top:24px;
+  }
+  .about-photo{
+    width:100%;
+    max-width:260px;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    border:1px solid var(--border);
+    filter:grayscale(100%) contrast(1.05);
+    transition:filter .4s ease, border-color .3s ease;
+  }
+  .about-photo:hover{
+    filter:grayscale(0%);
+    border-color:var(--amber);
+  }
+  @media(min-width:680px){
+    .about{grid-template-columns:220px 1fr;gap:36px}
+    .about-photo{max-width:220px}
+  }
+
+  /* WHAT I DO / HELP */
+  .cards{display:grid;grid-template-columns:1fr;gap:18px;margin-top:24px}
+  @media(min-width:700px){.cards{grid-template-columns:1fr 1fr}}
+  .card{
+    border:1px solid var(--border);
+    padding:26px 22px;
+    background:#050505;
+    transition:border-color .2s;
+  }
+  .card:hover{border-color:#3a3a3a}
+  .card .num{color:var(--amber);font-weight:700;font-size:.8rem;display:block;margin-bottom:10px}
+    .cards .card:last-child:nth-child(odd){
+    grid-column:1 / -1;
+  }
+
+/* PROYECTOS */
+.table-wrap{
+  margin-top:28px;
+  border:1px solid var(--border);
+  background:#050505;
+  overflow-x:auto;
+}
+table.projects{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.85rem;
+  min-width:560px;
+}
+table.projects thead th{
+  text-align:left;
+  font-weight:700;
+  font-size:.72rem;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--amber);
+  padding:14px 18px;
+  border-bottom:1px solid var(--border);
+  background:#0a0a0a;
+  white-space:nowrap;
+}
+table.projects tbody td{
+  padding:16px 18px;
+  border-bottom:1px solid var(--border);
+  vertical-align:top;
+  color:#d6d6d6;
+}
+table.projects tbody tr:last-child td{border-bottom:none}
+table.projects tbody tr{transition:background .2s}
+table.projects tbody tr:hover{background:#0a0a0a}
+table.projects td.name{font-weight:700;color:var(--fg);white-space:nowrap}
+table.projects td.desc{color:#bdbdbd}
+table.projects td.link a{color:var(--amber);word-break:break-all;font-size:.8rem}
+table.projects td.link a:hover{opacity:.75}
+.proj-note{
+  margin-top:16px;font-size:.75rem;color:var(--muted);
+}
+.proj-note::before{content:"# ";color:var(--amber)}
+
+  /* CONTACT */
+  .contact-lines{margin-top:24px;display:flex;flex-direction:column;gap:14px;font-size:.9rem}
+  .contact-line{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+  .contact-line .key{color:var(--muted);min-width:90px;font-size:.8rem}
+  .contact-line .val{font-weight:700}
+  .contact-cta{margin-top:32px;display:flex;flex-wrap:wrap;gap:14px}
+
+  /* FOOTER */
+  footer{padding:36px 0;text-align:center;color:var(--muted);font-size:.78rem}
+  footer .prompt{color:var(--amber)}
+
+  /* MOBILE NAV */
+  @media(max-width:680px){
+    .menu-btn{display:block}
+    .nav-links{
+      display:none;position:absolute;top:100%;left:0;right:0;
+      flex-direction:column;gap:0;background:#000;border-bottom:1px solid var(--border);
+    }
+    .nav-links.open{display:flex}
+    .nav-links li{border-top:1px solid var(--border)}
+    .nav-links a{display:block;padding:16px 24px;font-size:.9rem}
+  }
+
+  /* Reveal on scroll */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <a href="#hero" class="brand"><span class="prompt">~/</span>dnr</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menú">☰</button>
+    <ul class="nav-links" id="navLinks">
+  <li><a href="#skills">skills</a></li>
+  <li><a href="#soy">quién_soy</a></li>
+  <li><a href="#que_hago">qué_hago</a></li>
+  <li><a href="#proyectos">proyectos</a></li>
+  <li><a href="#ayuda">ayuda</a></li>
+  <li><a href="#contacto">contacto</a></li>
+</ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="container">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      </div>
+      <div class="terminal-body">
+        <span class="line"><span class="prompt">dnr@caracas:~$</span> <span class="typed" id="typed"></span><span class="caret"></span></span>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#proyectos" class="btn">[ ver_proyectos ]</a>
+      <a href="#contacto" class="btn ghost">[ contactar ]</a>
+    </div>
+
+    <p class="hero-meta">📍 Caracas, Venezuela · <span>disponible para proyectos</span></p>
+  </div>
+</header>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container reveal">
+    <span class="section-label">01 // skills</span>
+    <h2>Stack &amp; herramientas</h2>
+    <div class="skills-grid">
+      <div class="skill"><span class="name">HTML</span><span class="tag">estructura semántica</span></div>
+      <div class="skill"><span class="name">CSS</span><span class="tag">responsive · animaciones</span></div>
+      <div class="skill"><span class="name">JavaScript</span><span class="tag">interactividad · DOM</span></div>
+      <div class="skill"><span class="name">XML</span><span class="tag">datos · integración</span></div>
+      <div class="skill"><span class="name">Python</span><span class="tag progress">en proceso</span></div>
+      <div class="skill"><span class="name">Git</span><span class="tag">versionado · GitHub</span></div>
+            <div class="skill"><span class="name">Marketing</span><span class="tag">estrategia digital</span></div>
+      <div class="skill"><span class="name">Diseño Gráfico</span><span class="tag">identidad visual</span></div>
+      <div class="skill"><span class="name">IA</span><span class="tag">aplicada a flujos de trabajo</span></div>
+      <div class="skill"><span class="name">Publicidad</span><span class="tag">Meta Ads · campañas</span></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉN SOY -->
+<section id="soy">
+  <div class="container reveal">
+    <span class="section-label">02 // quién_soy</span>
+    <h2>Quién soy</h2>
+    <div class="about">
+      <img src="dnrwebdev.jpg" alt="Foto de perfil de DNR" class="about-photo" loading="lazy" width="220" height="220">
+      <div class="about-text">
+        <p>Mi nombre es Delwins Rivas y soy un desarrollador web (frontend) y de software con base en <strong>Caracas, Venezuela</strong>. Combino código con criterio de diseño y visión de marketing para construir productos digitales que no solo funcionan, sino que comunican.</p>
+        <p style="margin-top:14px">Trabajo con HTML, CSS, JavaScript y XML, y actualmente estoy profundizando en <strong>Python</strong>. Uso Git para mantener todo versionado y ordenado. Me muevo con comodidad entre lo técnico y lo creativo: del wireframe al deploy, del concepto de marca a la landing que convierte.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ HAGO -->
+<section id="que_hago">
+  <div class="container reveal">
+    <span class="section-label">03 // qué_hago</span>
+    <h2>Qué hago</h2>
+    <div class="cards">
+      <div class="card">
+        <span class="num">01</span>
+        <h3>Desarrollo web</h3>
+        <p>Sitios y landing pages rápidas, limpias y responsive. HTML, CSS y JavaScript bien estructurados, sin dependencias innecesarias.</p>
+      </div>
+      <div class="card">
+        <span class="num">02</span>
+        <h3>Software &amp; automatización</h3>
+        <p>Scripts y herramientas a medida. Integración de datos vía XML/JSON y automatizaciones con Python en desarrollo.</p>
+      </div>
+      <div class="card">
+        <span class="num">03</span>
+        <h3>Diseño &amp; branding</h3>
+        <p>Identidad visual, piezas gráficas y sistemas de diseño coherentes con la voz de cada marca.</p>
+      </div>
+            <div class="card">
+        <span class="num">04</span>
+        <h3>Marketing digital &amp; publicidad</h3>
+        <p>Estrategia de contenido, estructura de conversión, campañas en Meta Ads y presencia digital pensada para resultados medibles. Integro IA para acelerar procesos y análisis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos">
+  <div class="container reveal">
+    <span class="section-label">04 // proyectos</span>
+    <h2>Proyectos</h2>
+    <p>Una selección de sitios web, ecommerce y proyectos propios que he desarrollado y mantengo.</p>
+
+    <div class="table-wrap">
+      <table class="projects">
+        <thead>
+          <tr>
+            <th>proyecto</th>
+            <th>descripción</th>
+            <th>link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name">Decohogar Inmobiliaria</td>
+            <td class="desc">Web inmobiliaria</td>
+            <td class="link"><a href="https://www.decohogarinmobiliaria.com" target="_blank" rel="noopener">www.decohogarinmobiliaria.com</a></td>
+          </tr>
+          <tr>
+            <td class="name">One Moda</td>
+            <td class="desc">Tienda online de regalos</td>
+            <td class="link"><a href="https://www.regalosonemoda.com" target="_blank" rel="noopener">www.regalosonemoda.com</a></td>
+          </tr>
+          <tr>
+            <td class="name">Cacao Anagabiss</td>
+            <td class="desc">Emprendimiento artesanal de cacao</td>
+            <td class="link"><a href="https://cacaoanagabiss.blogspot.com" target="_blank" rel="noopener">cacaoanagabiss.blogspot.com</a></td>
+          </tr>
+          <tr>
+            <td class="name">Regálate Salud</td>
+            <td class="desc">Terapias holísticas</td>
+            <td class="link"><a href="https://regalatesalud.blogspot.com" target="_blank" rel="noopener">regalatesalud.blogspot.com</a></td>
+          </tr>
+          <tr>
+            <td class="name">DNR Consultor</td>
+            <td class="desc">Mi sitio web principal como valuador técnico</td>
+            <td class="link"><a href="https://www.dnrconsultor.com" target="_blank" rel="noopener">www.dnrconsultor.com</a></td>
+          </tr>
+          <tr>
+            <td class="name">Nebula</td>
+            <td class="desc">Agencia de marketing (proyecto propio desde 2015)</td>
+            <td class="link"><a href="https://nebula.dnrconsultor.com" target="_blank" rel="noopener">nebula.dnrconsultor.com</a></td>
+          </tr>
+          <tr>
+            <td class="name">Pulsar</td>
+            <td class="desc">Ecommerce de relojes y accesorios (proyecto propio desde 2026)</td>
+            <td class="link"><a href="https://pulsar.dnrconsultor.com" target="_blank" rel="noopener">pulsar.dnrconsultor.com</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="proj-note">Portafolio completo en Nebula</p>
+
+    <div class="hero-actions" style="margin-top:24px">
+      <a href="https://nebula.dnrconsultor.com/search/label/portafoliosweb" target="_blank" rel="noopener" class="btn">[ ver todos los proyectos en Nebula]</a>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO PUEDO AYUDARTE -->
+<section id="ayuda">
+  <div class="container reveal">
+    <span class="section-label">05 // ayuda</span>
+    <h2>¿Cómo puedo ayudarte?</h2>
+    <p>Si necesitas <strong>lanzar un sitio</strong>, <strong>rehacer uno existente</strong>, <strong>automatizar una tarea</strong> o <strong>darle forma a tu marca</strong>, puedo acompañarte de principio a fin. Trabajo directo, sin intermediarios, con comunicación clara por Telegram.</p>
+    <div class="cards" style="margin-top:24px">
+      <div class="card">
+        <h3>→ Sitios &amp; landings</h3>
+        <p>Diseño y desarrollo de páginas rápidas, enfocadas en conversión y fáciles de mantener.</p>
+      </div>
+      <div class="card">
+        <h3>→ Identidad &amp; contenido</h3>
+        <p>Imagen coherente: logo, paleta, tipografía y piezas para redes o presentaciones.</p>
+      </div>
+      <div class="card">
+        <h3>→ Automatización</h3>
+        <p>Scripts que ahorran tiempo: procesamiento de datos, tareas repetitivas, integraciones.</p>
+      </div>
+            <div class="card">
+        <h3>→ Consultoría</h3>
+        <p>Revisión de tu presencia digital y recomendaciones técnicas y de marketing concretas.</p>
+      </div>
+      <div class="card">
+        <h3>→ Campañas &amp; ads</h3>
+        <p>Diseño, lanzamiento y gestión de campañas en Meta Ads: segmentación, creatividades y optimización de presupuesto con métricas claras.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container reveal">
+    <span class="section-label">06 // contacto</span>
+    <h2>Contacto</h2>
+    <p>La vía más rápida es <strong>Telegram</strong>. No uso WhatsApp, así que escríbeme por ahí y te respondo lo antes posible.</p>
+
+    <div class="contact-lines">
+      <div class="contact-line"><span class="key">telegram</span><a href="https://t.me/dnrconsultor" target="_blank" rel="noopener" class="val">@dnrconsultor</a></div>
+      <div class="contact-line"><span class="key">teléfono</span><a href="tel:+584241536261" class="val">+58 424 153 6261</a></div>
+      <div class="contact-line"><span class="key">correo</span><a href="mailto:contacto@dnrconsultor.com" class="val">contacto@dnrconsultor.com</a></div>
+      <div class="contact-line"><span class="key">ubicación</span><span class="val">Caracas, Venezuela</span></div>
+    </div>
+
+    <div class="contact-cta">
+      <a href="https://t.me/soy_dnr" target="_blank" rel="noopener" class="btn">[ escribir por telegram ]</a>
+      <a href="mailto:contacto@dnrconsultor.com" class="btn ghost">[ enviar correo ]</a>
+      <a href="#proyectos" class="btn ghost">[ ver proyectos ]</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p><span class="prompt">dnr@caracas:~$</span> echo "© <span id="year"></span> DNR Consultor — Caracas, Venezuela"</p>
+  </div>
+</footer>
+
+<script>
+  // Año dinámico
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Menú móvil
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => navLinks.classList.remove('open'))
+  );
+
+  // Efecto de escritura en el hero
+  const phrases = [
+    "whoami --role 'desarrollador web & software'",
+    "cat perfil.txt  # Caracas, Venezuela",
+    "ls skills/  # html css js xml python git marketing diseño",
+    "git commit -m 'listo para nuevos proyectos'"
+  ];
+  const typedEl = document.getElementById('typed');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion) {
+    typedEl.textContent = phrases[0];
+  } else {
+    let p = 0, i = 0, deleting = false;
+    const typeSpeed = 55, eraseSpeed = 28, hold = 1600;
+
+    function tick() {
+      const current = phrases[p];
+      if (!deleting) {
+        typedEl.textContent = current.slice(0, ++i);
+        if (i === current.length) {
+          deleting = true;
+          setTimeout(tick, hold);
+          return;
+        }
+        setTimeout(tick, typeSpeed);
+      } else {
+        typedEl.textContent = current.slice(0, --i);
+        if (i === 0) {
+          deleting = false;
+          p = (p + 1) % phrases.length;
+        }
+        setTimeout(tick, eraseSpeed);
+      }
+    }
+    tick();
+  }
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('visible'));
+  }
+</script>
+</body>
+</html>
