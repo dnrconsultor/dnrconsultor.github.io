@@ -260,48 +260,40 @@
   .podcast-links{flex-direction:column}
 }
 
-/* PROYECTOS */
-.table-wrap{
+/* PODCAST */
+.podcast-media{
   margin-top:28px;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:22px;
+}
+
+/* Portada tipo reproductor 21:9 */
+.podcast-cover{
+  display:block;
+  width:100%;
+  aspect-ratio:21/9;
+  object-fit:cover;
   border:1px solid var(--border);
   background:#050505;
-  overflow-x:auto;
+  transition:border-color .3s ease, transform .3s ease;
 }
-table.projects{
-  width:100%;
-  border-collapse:collapse;
-  font-size:.85rem;
-  min-width:560px;
+.podcast-cover:hover{
+  border-color:var(--amber);
+  transform:translateY(-2px);
 }
-table.projects thead th{
-  text-align:left;
-  font-weight:700;
-  font-size:.72rem;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  color:var(--amber);
-  padding:14px 18px;
-  border-bottom:1px solid var(--border);
-  background:#0a0a0a;
-  white-space:nowrap;
+
+.podcast-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
 }
-table.projects tbody td{
-  padding:16px 18px;
-  border-bottom:1px solid var(--border);
-  vertical-align:top;
-  color:#d6d6d6;
+
+@media(min-width:680px){
+  .podcast-cover{max-width:100%}
+  .podcast-links{flex-direction:row}
 }
-table.projects tbody tr:last-child td{border-bottom:none}
-table.projects tbody tr{transition:background .2s}
-table.projects tbody tr:hover{background:#0a0a0a}
-table.projects td.name{font-weight:700;color:var(--fg);white-space:nowrap}
-table.projects td.desc{color:#bdbdbd}
-table.projects td.link a{color:var(--amber);word-break:break-all;font-size:.8rem}
-table.projects td.link a:hover{opacity:.75}
-.proj-note{
-  margin-top:16px;font-size:.75rem;color:var(--muted);
-}
-.proj-note::before{content:"# ";color:var(--amber)}
 
   /* CONTACT */
   .contact-lines{margin-top:24px;display:flex;flex-direction:column;gap:14px;font-size:.9rem}
