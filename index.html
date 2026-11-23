@@ -224,6 +224,41 @@
     .cards .card:last-child:nth-child(odd){
     grid-column:1 / -1;
   }
+  
+ /* PODCAST */
+.podcast-media{
+  margin-top:28px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:22px;
+}
+.podcast-cover{
+  width:100%;
+  max-width:320px;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border:1px solid var(--border);
+  background:#050505;
+  transition:border-color .3s ease;
+}
+.podcast-cover:hover{border-color:var(--amber)}
+
+.podcast-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+}
+
+@media(min-width:680px){
+  .podcast-media{
+    flex-direction:row;
+    align-items:center;
+    gap:32px;
+  }
+  .podcast-cover{max-width:280px}
+  .podcast-links{flex-direction:column}
+}
 
 /* PROYECTOS */
 .table-wrap{
@@ -322,6 +357,7 @@ table.projects td.link a:hover{opacity:.75}
   <li><a href="#skills">skills</a></li>
   <li><a href="#soy">quién_soy</a></li>
   <li><a href="#que_hago">qué_hago</a></li>
+  <li><a href="#podcast">podcast</a></li>
   <li><a href="#proyectos">proyectos</a></li>
   <li><a href="#ayuda">ayuda</a></li>
   <li><a href="https://blog.dnrconsultor.com">blog</a></li>
@@ -445,10 +481,34 @@ table.projects td.link a:hover{opacity:.75}
   </div>
 </section>
 
+<!-- PODCAST -->
+<section id="podcast">
+  <div class="container reveal">
+    <span class="section-label">04 // podcast</span>
+    <h2>Decodificados</h2>
+    <p>Un podcast donde abordo la tecnología, el software, el cibercrimen, la seguridad y la actualidad, explicados de forma sencilla y con casos reales, pensado para quienes no son programadores. La tecnología, decodificada para todos.</p>
+
+    <div class="podcast-media">
+      <img src="decoded.jpeg"
+           alt="Portada del podcast Decodificados"
+           class="podcast-cover"
+           loading="lazy"
+           width="320" height="320">
+
+      <div class="podcast-links">
+        <a href="https://www.youtube.com/playlist?list=PLfteqUcA3NCY"
+           target="_blank" rel="noopener" class="btn">[ escuchar en YouTube ]</a>
+        <a href="https://open.spotify.com/show/27s5egiff4ak4qmhCyMOy5"
+           target="_blank" rel="noopener" class="btn ghost">[ escuchar en Spotify ]</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PROYECTOS -->
 <section id="proyectos">
   <div class="container reveal">
-    <span class="section-label">04 // proyectos</span>
+    <span class="section-label">05 // proyectos</span>
     <h2>Proyectos</h2>
     <p>Una selección de sitios web, ecommerce y proyectos propios que he desarrollado y mantengo.</p>
 
@@ -517,7 +577,7 @@ table.projects td.link a:hover{opacity:.75}
 <!-- CÓMO PUEDO AYUDARTE -->
 <section id="ayuda">
   <div class="container reveal">
-    <span class="section-label">05 // ayuda</span>
+    <span class="section-label">06 // ayuda</span>
     <h2>¿Cómo puedo ayudarte?</h2>
     <p>Si necesitas <strong>lanzar un sitio</strong>, <strong>rehacer uno existente</strong>, <strong>automatizar una tarea</strong> o <strong>darle forma a tu marca</strong>, puedo acompañarte de principio a fin. Trabajo directo, sin intermediarios, con comunicación clara por Telegram.</p>
     <div class="cards" style="margin-top:24px">
@@ -548,7 +608,7 @@ table.projects td.link a:hover{opacity:.75}
 <!-- CONTACTO -->
 <section id="contacto">
   <div class="container reveal">
-    <span class="section-label">06 // contacto</span>
+    <span class="section-label">07 // contacto</span>
     <h2>Contacto</h2>
     <p>La vía más rápida es <strong>Telegram</strong>. No uso WhatsApp, así que escríbeme por ahí y te respondo lo antes posible.</p>
 
