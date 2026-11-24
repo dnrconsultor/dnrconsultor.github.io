@@ -232,24 +232,37 @@
   flex-direction:column;
   align-items:stretch;
   gap:22px;
-  min-width:0; /* evita desbordes en flex */
+  min-width:0;
 }
 
-/* Portada tipo reproductor 21:9, siempre responsive */
-.podcast-cover{
+/* Portada tipo reproductor 21:9 (solo para imágenes) */
+img.podcast-cover{
   display:block;
   width:100%;
   max-width:100%;
-  height:auto;              /* deja que aspect-ratio mande */
+  height:auto;
   aspect-ratio:21/9;
   object-fit:cover;
   border:1px solid var(--border);
   background:#050505;
   transition:border-color .3s ease, transform .3s ease;
 }
-.podcast-cover:hover{
+img.podcast-cover:hover{
   border-color:var(--amber);
   transform:translateY(-2px);
+}
+
+/* Reproductor embebido (iframe) */
+iframe.podcast-cover{
+  display:block;
+  width:100%;
+  max-width:100%;
+  border:1px solid var(--border);
+  background:#050505;
+  transition:border-color .3s ease;
+}
+iframe.podcast-cover:hover{
+  border-color:var(--amber);
 }
 
 .podcast-links{
@@ -259,7 +272,6 @@
   min-width:0;
 }
 
-/* En pantallas muy pequeñas, los botones ocupan todo el ancho */
 @media(max-width:480px){
   .podcast-links .btn{
     flex:1 1 100%;
@@ -500,7 +512,7 @@ table.projects td.link a:hover{opacity:.75}
     <p>Un podcast donde abordo la tecnología, el software, el cibercrimen, la seguridad y la actualidad, explicados de forma sencilla y con casos reales, pensado para quienes no son programadores. La tecnología, decodificada para todos.</p>
 
     <div class="podcast-media">
-      <iframe src='https://anchor.fm/dnrpodcast/embed' height='150px' widht='100%' frameborder='0' scrolling='no'></iframe>
+      <iframe src='https://anchor.fm/dnrpodcast/embed' height='150px' widht='100%' frameborder='0' scrolling='no'></iframe><br/><br/>
 
       <div class="podcast-links">
         <a href="https://www.youtube.com/playlist?list=PLfteqUcA3NCY"
