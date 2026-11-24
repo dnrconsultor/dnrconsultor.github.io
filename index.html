@@ -225,23 +225,57 @@
     grid-column:1 / -1;
   }
   
+/* PODCAST */
+.podcast-media{
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 22px; /* ESTO MANTIENE LA SEPARACIÓN ENTRE REPRO Y BOTONES */
+  min-width: 0;
+}
+
 /* Reproductor embebido (iframe) */
-iframe.podcast-cover {
+iframe.podcast-cover{
   display: block;
   width: 100%;
   max-width: 100%;
   border: 1px solid var(--border);
   background: #050505;
   transition: border-color .3s ease;
-  
-  /* Esto es lo nuevo para arreglar el espacio blanco */
-  overflow: hidden; 
+  overflow: hidden;
+  /* Altura base para escritorio */
+  height: 170px; 
 }
 
-/* Solo en móviles: recortamos el alto del iframe para que no sobre espacio blanco */
+iframe.podcast-cover:hover{
+  border-color: var(--amber);
+}
+
+/* Botones (mantiene tu diseño original) */
+.podcast-links{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px; /* SEPARACIÓN ENTRE BOTONES */
+  min-width: 0;
+}
+
+/* En pantallas muy pequeñas, los botones ocupan todo el ancho */
+@media(max-width:480px){
+  .podcast-links .btn{
+    flex: 1 1 100%;
+    text-align: center;
+  }
+}
+
+@media(min-width:680px){
+  .podcast-links{flex-direction:row}
+}
+
+/* Ajuste específico para móviles: recorta el exceso blanco del iframe de Anchor */
 @media (max-width: 680px) {
   iframe.podcast-cover {
-    height: 115px; /* Ajusta este valor si el reproductor se corta o sobra espacio */
+    height: 115px; /* Si ves que se corta el play, sube a 120px */
   }
 }
 
